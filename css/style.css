@@ -1,0 +1,407 @@
+/* Estilos Generales y Reset */
+:root {
+    --primary-color: #0d1a2f; /* Azul muy oscuro para el fondo o elementos principales */
+    --secondary-color: #2a3d5e; /* Azul un poco más claro para secciones */
+    --accent-color: #6a8eec; /* Azul brillante para acentos y botones */
+    --text-color: #f0f0f0; /* Blanco suave para el texto */
+    --light-blue-star: #add8e6; /* Celeste para las estrellas */
+    --white-star: #ffffff; /* Blanco puro para las estrellas */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: var(--text-color);
+    background-color: var(--primary-color);
+    line-height: 1.6;
+    overflow-x: hidden; /* Evita scroll horizontal */
+    position: relative; /* Para el z-index del canvas */
+}
+
+/* Contenedores generales para el diseño responsivo */
+.container-header,
+.container-footer,
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Header --- */
+header {
+    background-color: rgba(1, 1, 56, 0.866); /* Header semi-transparente */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky; /* Fijo al top al hacer scroll */
+    top: 0;
+    z-index: 100; /* Asegura que esté por encima de otros elementos */
+    width: 100%;
+}
+
+.site-title {
+    color: var(--text-color);
+    font-size: 1.8em;
+    margin: 0;
+}
+
+/* Navegación principal (escritorio) */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    margin: 1rem;
+    padding: 10px;
+}
+
+.main-nav li {
+    margin-left: 25px;
+}
+
+.main-nav a {display: flex;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    transition: color 0.3s ease;
+    margin: 1.5rem;
+    
+   
+}
+
+.main-nav a:hover {
+    color: var(--accent-color);
+}
+
+/* Botón de menú móvil (oculto por defecto en desktop) */
+.mobile-menu-toggle {
+    display: none; /* Se mostrará con Media Query en móvil */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 30px;
+    position: relative;
+    z-index: 101; /* Asegura que esté por encima del nav si se superpone */
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: var(--text-color);
+    margin: 6px 0;
+    transition: all 0.3s ease;
+   
+}
+
+/* Clase para el menú móvil abierto (manejo con JS) */
+.main-nav.active {
+    /* Estilos para el menú móvil abierto (sidebar o full-screen) */
+}
+
+/* --- Main Content --- */
+main {
+    background-image: url(https://wallpapercave.com/wp/wp3172279.jpg);    
+    padding: 40px 0;
+    min-height: 80vh; /* Asegura que el contenido ocupe al menos esta altura */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente en la página de inicio */
+    position: relative;
+    z-index: 1; /* Por encima del canvas */
+}
+
+.page-content {
+    padding-top: 80px; /* Espacio para el header fijo en páginas secundarias */
+    min-height: calc(100vh - 100px); /* Ajusta si el footer es muy grande */
+}
+
+h1{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+h2, h3, h4 {
+    
+    margin-bottom: 15px;
+    color: #f0f0f0;
+}
+
+p {
+    margin-bottom: 1em;
+    color: #f0f0f0;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #1c3777; /* Un tono un poco más oscuro */
+}
+
+/* Imágenes Responsivas */
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Grid Layouts (Para .about-grid, .services-grid, .image-gallery, .team-grid) --- */
+.team-grid,
+.services-grid,
+.image-gallery {
+    display: grid;
+    gap: 20px; /* Espacio entre los elementos de la cuadrícula */
+    margin-top: 30px;
+}
+
+.team-member,
+.service-item {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.team-member img {
+    border-radius: 50%; /* Imágenes de perfil circulares */
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 3px solid var(--accent-color);
+}
+
+.service-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.image-gallery img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-gallery img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Formulario de Contacto --- */
+.contact-form {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    
+    
+}
+
+.form-group {
+    margin-bottom: 15px;
+  
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+.contact-info {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+}
+
+.contact-info a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+}
+
+/* --- Responsive Design (Media Queries) --- */
+
+/* Mobile (pantallas hasta 767px) */
+@media (max-width: 767px) {
+    .site-title {
+        font-size: 1.5em;
+    }
+
+    .main-nav {
+        /* Para el menú lateral/hamburguesa, inicializamos oculto */
+        position: fixed;
+        top: 0;
+        left: -250px; /* Oculto fuera de la pantalla */
+        width: 250px;
+        height: 100%;
+        background-color: rgba(17, 17, 17, 0.95);
+        padding-top: 60px;
+        transition: left 0.3s ease;
+        z-index: 99; /* Por debajo del botón de hamburguesa */
+    }
+
+    .main-nav ul {
+        flex-direction: column; /* Elementos de lista apilados verticalmente */
+        align-items: flex-start;
+        padding-left: 20px;
+    }
+
+    .main-nav li {
+        margin: 10px 0;
+        width: 100%;
+    }
+
+    .main-nav a {
+        padding: 10px 0;
+        display: block;
+        font-size: 1.2em;
+    }
+
+    .mobile-menu-toggle {
+        display: block; /* Muestra el botón de hamburguesa */
+        position: absolute; /* Para que quede en la esquina del header */
+        left: 20px;
+    }
+
+    /* Clase que se agregará con JavaScript cuando el menú esté abierto */
+    .main-nav.active {
+        left: 0; /* Muestra el menú deslizándolo */
+    }
+
+    /* Ajustes de cuadrícula para móvil */
+    .team-grid,
+    .services-grid,
+    .image-gallery {
+        grid-template-columns: 1fr; /* Una columna por defecto */
+    }
+
+    .hero-section {
+        padding-top: 80px; /* Espacio para el header y botón en mobile */
+    }
+
+    .container-header,
+    .container-footer,
+    .content-wrapper {
+        padding: 0 15px; /* Menor padding en móvil */
+    }
+
+    .site-title {
+        text-align: center; /* Centrar título en mobile */
+        width: 100%;
+    }
+}
+
+/* Tabletas (pantallas de 768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .site-title {
+        font-size: 2em;
+    }
+
+    .main-nav li {
+        margin-left: 20px;
+    }
+
+    /* Ajustes de cuadrícula para tabletas */
+    .team-grid,
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    }
+
+    .image-gallery {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas para imágenes */
+    }
+}
+
+/* Escritorios (pantallas de 1024px y más) */
+@media (min-width: 1024px) {
+    .site-title {
+        font-size: 2.2em;
+    }
+
+    .main-nav li {
+        margin-left: 30px;
+    }
+
+    /* Ajustes de cuadrícula para escritorios */
+    .team-grid {
+        grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+    }
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+    }
+    .image-gallery {
+        grid-template-columns: repeat(4, 1fr); /* Cuatro columnas para imágenes */
+    }
+}
